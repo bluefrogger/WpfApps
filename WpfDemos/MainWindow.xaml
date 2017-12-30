@@ -4,9 +4,67 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemos"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="MainWindow" Height="350" Width="525" ResizeMode="CanResize" SizeToContent="WidthAndHeight"
+        Topmost="False" WindowState="Normal" Icon="./Resources/favicon.ico"
+        FontFamily="Segoe Script" 
+        Loaded="Window_Loaded" MouseMove="Window_MouseMove">
+    <Window.Resources>
+        <sys:String x:Key="strHelloWorld">Hello World</sys:String>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontFamily" Value="Segoe" />
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="GridMain">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="20">Hello World!</TextBlock>
+        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="26">Goodbye!!</Label>
+        <StackPanel Grid.Column="1" Grid.Row="3">
+            <TextBox Name="UserName" Text="User Name"/>
+            <Button x:Name="Button1" Content="{Binding FullName}"></Button>
+            <Button x:Name="Button2" Content="Button2" Click="Button2_Click"></Button>
+        </StackPanel>
+        <ComboBox x:Name="ComboBox1" Grid.Column="1" Grid.Row="4">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <!--<TextBlock Text="{Binding FullName}"></TextBlock>-->
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="D:\Pictures\bluefrog.jpg" />
+                        <TextBlock Text="{Binding FirstName}" />
+                        <TextBlock Text=" " />
+                        <TextBlock Text="{Binding LastName}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <WrapPanel Grid.Column="3" Grid.Row="1" Grid.RowSpan="5" Orientation="Horizontal">
+            <Image Source="D:/Pictures/bluefrog.jpg"></Image>
+            <Image Source="D:/Pictures/greenfrog.png"></Image>
+            <Image Source="D:/Pictures/harlequinfrog.jpg"></Image>
+            <Image Source="D:/Pictures/strawberryfrog.jpg"></Image>
+        </WrapPanel>
+        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal">
+            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Text="My Text Block"/>
+            <Button x:Name="Button3" Content="Button3" Click="Button3_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
